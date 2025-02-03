@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Code Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-md flex justify-center">
+        <h1 class="text-xl font-bold">G-Code Snippet Viewer</h1>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container mx-auto p-6">
+        <!-- Dropdown -->
+        <div class="mb-4 text-center">
+            <label for="snippet-selector" class="text-lg font-semibold mr-2">Select G-Code Example:</label>
+            <select id="snippet-selector" class="p-2 rounded bg-gray-800 text-white border border-gray-600">
+                <option value="">Loading...</option>
+            </select>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- G-Code Snippet -->
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg col-span-1">
+                <h2 class="text-lg font-semibold mb-2">G-Code Snippet</h2>
+                <pre><code class="language-gcode" id="gcode-snippet"></code></pre>
+            </div>
+
+            <!-- Explanation -->
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg col-span-1">
+                <h2 class="text-lg font-semibold mb-2">Explanation</h2>
+                <p id="gcode-description">Select a G-code from the dropdown to see details.</p>
+            </div>
+
+            <!-- Illustration -->
+            <div class="bg-gray-800 p-4 rounded-lg shadow-lg col-span-1 text-center">
+                <h2 class="text-lg font-semibold mb-2">Illustration</h2>
+                <img id="gcode-illustration" src="https://via.placeholder.com/300" alt="G-Code Illustration" class="mx-auto">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load JSON Data
+        async function loadGCodeData() {
+            try {
+                const response = await fetch("gcode_data.json"); // Load JSON file
+                const data = await response.json();
+                
+                const selector = document.getElementById("snippet-selector");
+                selector.innerHTML = ""; // Clear default options
+
+                // Populate dropdown with G-codes
+                for (const key in data) {
+                    let option = document.createElement("option");
+                    option.value = key;
+                    option.textContent = key;
+                    selector.appendChild(option);
+                }
+
+                // Update UI when a G-code is selected
+                selector.addEventListener("change", function() {
+                    const selectedCode = selector.value;
+                    if (selectedCode) {
+                        document.getElementById("gcode-snippet").textContent = data[selectedCode].code;
+                        document.getElementById("gcode-description").textContent = data[selectedCode].description;
+                        document.getElementById("gcode-illustration").src = data[selectedCode].illustration;
+
+                        hljs.highlightAll(); // Apply syntax highlighting
+                    }
+                });
+            } catch (error) {
+                console.error("Error loading G-code data:", error);
+            }
+        }
+
+        // Run the function on page load
+        loadGCodeData();
+    </script>
+</body>
+</html>
