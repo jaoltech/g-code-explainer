@@ -49,7 +49,7 @@
         // Load JSON Data
         async function loadGCodeData() {
             try {
-                const response = await fetch("gcode_data.json"); // Load JSON file
+                const response = await fetch("https://raw.githubusercontent.com/jaoltech/g-code-explainer/refs/heads/main/data/gcode_data.json?token=GHSAT0AAAAAAC6KX2NFV4WYP7WSW5ZGFYTAZ5BFYRQ"); // Load JSON file
                 const data = await response.json();
                 
                 const selector = document.getElementById("snippet-selector");
