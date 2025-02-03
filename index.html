@@ -62,7 +62,7 @@
         <div class="mb-6 text-center">
             <label for="snippet-selector" class="text-lg font-semibold text-teal-200">Select G-Code Example:</label>
             <select id="snippet-selector" class="p-3 w-1/3 rounded-lg bg-gray-700 text-white border border-gray-500 cursor-pointer">
-                <option value="">Loading...</option>
+                <option value="">Vælg en G-kode...</option>
             </select>
         </div>
 
@@ -87,27 +87,9 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const gcodeData = {
-            "G00": {
-                "description": "Rapid positioning...",
-                "code": "G00 X50 Y50 Z10",
-                "illustration": "https://via.placeholder.com/300/FF5733/FFFFFF?text=G00"
-            },
-            "G01": {
-                "description": "Linear feed move...",
-                "code": "G01 X50 Y30 F350",
-                "illustration": "https://via.placeholder.com/300/33FF57/FFFFFF?text=G01"
-            },
-            "G02": {
-                "description": "Clockwise circular interpolation...",
-                "code": "G02 X75 Y25 R50 F800",
-                "illustration": "https://via.placeholder.com/300/3357FF/FFFFFF?text=G02"
-            }
-        };
-
-        // Populate dropdown
+    <script src="data/gcode_data.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const selector = document.getElementById("snippet-selector");
         for (const key in gcodeData) {
             let option = document.createElement("option");
@@ -116,26 +98,17 @@
             selector.appendChild(option);
         }
 
-        // Update content on selection
         selector.addEventListener("change", function() {
             const selectedCode = selector.value;
             if (selectedCode) {
                 document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
                 document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
                 document.getElementById("gcode-illustration").src = gcodeData[selectedCode].illustration;
-
-                // Add highlight effect
-                document.getElementById("gcode-snippet").classList.add("highlight");
-                setTimeout(() => {
-                    document.getElementById("gcode-snippet").classList.remove("highlight");
-                }, 500);
-
-                hljs.highlightAll(); // Reapply syntax highlighting
+                hljs.highlightAll();
             }
         });
+    });
+</script>
 
-        // Apply syntax highlighting
-        hljs.highlightAll();
-    </script>
 </body>
 </html>
