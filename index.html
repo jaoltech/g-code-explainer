@@ -68,16 +68,18 @@
 
         <!-- Content Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+
+            <!-- Explanation -->
+            <div class="card col-span-1">                
+                <h2 id="gcode-heading" class="text-xl font-bold text-teal-400 mb-3">Select a G-Code</h2>
+                <p id="gcode-description">Choose a G-code from the dropdown to see its details.</p>
+            </div>
+            
             <!-- G-Code Snippet -->
             <div class="card col-span-1">
                 <h2 class="text-lg font-semibold text-teal-400 mb-3">G-Code Snippet</h2>
                 <pre><code class="language-gcode" id="gcode-snippet">Select a G-code...</code></pre>
-            </div>
-
-            <!-- Explanation -->
-            <div class="card col-span-1">
-                <h2 class="text-lg font-semibold text-teal-400 mb-3">Explanation</h2>
-                <p id="gcode-description">Choose a G-code from the dropdown to see its details.</p>
             </div>
 
             <!-- Illustration -->
@@ -100,10 +102,13 @@
 
         selector.addEventListener("change", function() {
             const selectedCode = selector.value;
-            if (selectedCode) {
-                document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
+
+            if (selectedCode && gcodeData[selectedCode]) {
+                document.getElementById("gcode-heading").textContent = gcodeData[selectedCode].heading || selectedCode;
                 document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
+                document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
                 document.getElementById("gcode-illustration").src = gcodeData[selectedCode].illustration;
+
                 hljs.highlightAll();
             }
         });
