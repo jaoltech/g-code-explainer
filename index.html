@@ -46,41 +46,25 @@
     </div>
 
     <script>
-        // Load JSON Data
-        async function loadGCodeData() {
-            try {
-                const response = await fetch("https://raw.githubusercontent.com/jaoltech/g-code-explainer/refs/heads/main/data/gcode_data.json?token=GHSAT0AAAAAAC6KX2NFV4WYP7WSW5ZGFYTAZ5BFYRQ"); // Load JSON file
-                const data = await response.json();
-                
-                const selector = document.getElementById("snippet-selector");
-                selector.innerHTML = ""; // Clear default options
-
-                // Populate dropdown with G-codes
-                for (const key in data) {
-                    let option = document.createElement("option");
-                    option.value = key;
-                    option.textContent = key;
-                    selector.appendChild(option);
-                }
-
-                // Update UI when a G-code is selected
-                selector.addEventListener("change", function() {
-                    const selectedCode = selector.value;
-                    if (selectedCode) {
-                        document.getElementById("gcode-snippet").textContent = data[selectedCode].code;
-                        document.getElementById("gcode-description").textContent = data[selectedCode].description;
-                        document.getElementById("gcode-illustration").src = data[selectedCode].illustration;
-
-                        hljs.highlightAll(); // Apply syntax highlighting
-                    }
-                });
-            } catch (error) {
-                console.error("Error loading G-code data:", error);
+        document.addEventListener("DOMContentLoaded", function() {
+            const selector = document.getElementById("snippet-selector");
+            for (const key in gcodeData) {
+                let option = document.createElement("option");
+                option.value = key;
+                option.textContent = key;
+                selector.appendChild(option);
             }
-        }
-
-        // Run the function on page load
-        loadGCodeData();
+    
+            selector.addEventListener("change", function() {
+                const selectedCode = selector.value;
+                if (selectedCode) {
+                    document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
+                    document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
+                    document.getElementById("gcode-illustration").src = gcodeData[selectedCode].illustration;
+                    hljs.highlightAll();
+                }
+            });
+        });
     </script>
 </body>
 </html>
