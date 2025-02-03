@@ -1,4 +1,4 @@
-const gcodeData = {
+{const gcodeData = {
         "G00": {
             "description": "Rapid positioning. Moves all axes at maximum speed without considering programmed feed rates.",
             "code": "G00 X50 Y50 Z10",
