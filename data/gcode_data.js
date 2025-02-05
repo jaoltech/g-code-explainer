@@ -46,7 +46,7 @@ const gcodeData ={
         "description": "Cancel cutter radius compensation.",
         "code": "G40",
         "example": "G01 X25. Y30.\nG40 G00 X10. Y30.",
-        "illustration": "G40.png"
+        "illustration": ["G40.png", "G40_1.png"]
     },
     "G41": {
         "heading": "Cutter compensation left",

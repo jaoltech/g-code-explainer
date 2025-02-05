@@ -123,44 +123,67 @@
             selector.appendChild(option);
         }
 
-        // Event Listener for G-code Selection
-        selector.addEventListener("change", function() {
-            const selectedCode = selector.value;
+        selector.addEventListener("change", function () {
+        const selectedCode = selector.value;
 
-            if (selectedCode && gcodeData[selectedCode]) {
-                const illustration = gcodeData[selectedCode].illustration;
+        if (selectedCode && gcodeData[selectedCode]) {
+            const illustrationData = gcodeData[selectedCode].illustration; // Can be string or array
+            const illustrationContainer = document.getElementById("gcode-illustration-container");
 
-                // Update text elements
-                document.getElementById("gcode-heading").textContent = gcodeData[selectedCode].heading || selectedCode;
-                document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
-                document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
+            // Update text-based elements
+            document.getElementById("gcode-heading").textContent = gcodeData[selectedCode].heading || selectedCode;
+            document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
+            document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
 
-                // Reset illustration container
-                illustrationContainer.innerHTML = "";
+            // Reset illustration container
+            illustrationContainer.innerHTML = "";
 
-                // If illustration is an HTML file, fetch & insert it
-                if (illustration.endsWith(".html")) {
-                    fetch(illustration)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                            return response.text();
-                        })
+            if (Array.isArray(illustrationData)) {
+                // If there are multiple images, loop through them
+                illustrationData.forEach(imgSrc => {
+                    if (imgSrc.endsWith(".html")) {
+                        // If it's an HTML file (for SVG animations), fetch and insert it
+                        fetch(imgSrc)
+                            .then(response => response.text())
+                            .then(html => {
+                                const animationDiv = document.createElement("div");
+                                animationDiv.innerHTML = html;
+                                animationDiv.className = "w-full my-2"; // Styling
+                                illustrationContainer.appendChild(animationDiv);
+                            })
+                            .catch(error => {
+                                console.error("Error loading SVG animation:", error);
+                            });
+                    } else {
+                        // Otherwise, assume it's an image and insert it
+                        const imgElement = document.createElement("img");
+                        imgElement.src = imgSrc;
+                        imgElement.className = "rounded-lg shadow-md mx-auto my-2"; // Styling for spacing
+                        imgElement.alt = "G-Code Illustration";
+                        illustrationContainer.appendChild(imgElement);
+                    }
+                });
+            } else if (typeof illustrationData === "string") {
+                // Handle a single image or an HTML animation
+                if (illustrationData.endsWith(".html")) {
+                    fetch(illustrationData)
+                        .then(response => response.text())
                         .then(html => {
-                            illustrationContainer.innerHTML = html;
+                            illustrationContainer.innerHTML = html; // Replace with SVG animation
                         })
                         .catch(error => {
-                            illustrationContainer.innerHTML = `<p class="text-red-400">Failed to load animation.</p>`;
-                            console.error("Error loading SVG:", error);
+                            console.error("Error loading SVG animation:", error);
                         });
                 } else {
-                    // Otherwise, load as an image
-                    illustrationContainer.innerHTML = `<img id="gcode-illustration" src="${illustration}" class="rounded-lg shadow-md mx-auto" alt="G-Code Illustration">`;
+                    illustrationContainer.innerHTML = `<img id="gcode-illustration" src="${illustrationData}" class="rounded-lg shadow-md mx-auto" alt="G-Code Illustration">`;
                 }
-
-                // Reapply syntax highlighting
-                hljs.highlightAll();
             }
-        });
+
+            // Reapply syntax highlighting
+            hljs.highlightAll();
+        }
+    });
+
     });
 
 </script>
