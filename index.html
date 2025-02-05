@@ -105,40 +105,44 @@
 
         // Event Listener for G-code Selection
         selector.addEventListener("change", function() {
-            const selectedCode = selector.value;
+        const selectedCode = selector.value;
 
-            if (selectedCode && gcodeData[selectedCode]) {
-                const illustration = gcodeData[selectedCode].illustration; // Define illustration here
+        if (selectedCode && gcodeData[selectedCode]) {
+            const illustration = gcodeData[selectedCode].illustration; // Define illustration inside the event
+            const illustrationContainer = document.getElementById("gcode-illustration-container");
 
-                // Update content
-                document.getElementById("gcode-heading").textContent = gcodeData[selectedCode].heading || selectedCode;
-                document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
-                document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
+            // Update the text-based elements
+            document.getElementById("gcode-heading").textContent = gcodeData[selectedCode].heading || selectedCode;
+            document.getElementById("gcode-description").textContent = gcodeData[selectedCode].description;
+            document.getElementById("gcode-snippet").textContent = gcodeData[selectedCode].code;
 
-                // Check if illustration is an external HTML file (SVG animation)
-                if (illustration.endsWith(".html")) {
-                    fetch(illustration)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                            return response.text();
-                        })
-                        .then(html => {
-                            illustrationContainer.outerHTML = `<div id="gcode-illustration" class="w-full">${html}</div>`; // Replace img with SVG animation
-                        })
-                        .catch(error => {
-                            illustrationContainer.outerHTML = `<p class="text-red-400">Failed to load animation.</p>`;
-                            console.error("Error loading SVG:", error);
-                        });
-                } else {
-                    // Otherwise, load as an image
-                    illustrationContainer.outerHTML = `<img id="gcode-illustration" src="${illustration}" class="rounded-lg shadow-md mx-auto" alt="G-Code Illustration">`;
-                }
+            // Reset the illustration container before inserting new content
+            illustrationContainer.innerHTML = "";
 
-                // Apply syntax highlighting
-                hljs.highlightAll();
+            // If the illustration is an external HTML file (animated SVG), fetch and insert it
+            if (illustration.endsWith(".html")) {
+                fetch(illustration)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                        return response.text();
+                    })
+                    .then(html => {
+                        illustrationContainer.innerHTML = html; // Replace with SVG animation
+                    })
+                    .catch(error => {
+                        illustrationContainer.innerHTML = `<p class="text-red-400">Failed to load animation.</p>`;
+                        console.error("Error loading SVG:", error);
+                    });
+            } else {
+                // Otherwise, load the image
+                illustrationContainer.innerHTML = `<img id="gcode-illustration" src="${illustration}" class="rounded-lg shadow-md mx-auto" alt="G-Code Illustration">`;
             }
-        });
+
+            // Apply syntax highlighting again
+            hljs.highlightAll();
+        }
     });
+});
 </script>
 
 </body>
