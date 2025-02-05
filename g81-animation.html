@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated G81 SVG</title>
+    <style>
+        @keyframes moveDrill {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(100px, 0); }
+            50% { transform: translate(100px, 50px); }
+            75% { transform: translate(100px, 150px); }
+            100% { transform: translate(100px, 50px); }
+        }
+
+        #drill {
+            animation: moveDrill 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <svg width="100%" height="100%" viewBox="0 0 958.477 462.291">
+        <defs>
+            <style>
+                .cls-1 { fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 4px; }
+                .cls-2 { letter-spacing: .024em; }
+                .cls-3 { font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 19px; }
+                .cls-4 { letter-spacing: -.003em; }
+                .cls-5 { letter-spacing: 0em; }
+            </style>
+        </defs>
+
+        <!-- Drill Object (Animated) -->
+        <g id="drill">
+            <polygon class="cls-1" points="85 41 85 138.021 89 143 85 150.957 85 173.191 89 178.532 85 189.085 85 211 98 222 109 213.596 108 203 112 198 112 182 109 173.191 112 162 112 143.128 109 137 112 126.106 112 41 85 41"/>
+        </g>
+
+        <!-- Other Shapes -->
+        <polyline class="cls-1" points="92 237 224 200 366 341 92 418.532"/>
+        <text class="cls-3" transform="translate(267.213 173.191)">G98 Start Plane</text>
+    </svg>
+</body>
+</html>

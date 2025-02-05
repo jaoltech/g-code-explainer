@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lag_2" data-name="Lag 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 958.477 462.291">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        letter-spacing: .024em;
+      }
+
+      .cls-3 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+        font-size: 19px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.003em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <polyline class="cls-1" points="92 237 224 200 366 341 92 418.532"/>
+  <polyline class="cls-1" points="366 341 366 401.17 291 423"/>
+  <text class="cls-3" transform="translate(267.213 173.191)"><tspan x="0" y="0">G98 </tspan><tspan class="cls-4" x="35.795" y="0">S</tspan><tspan class="cls-5" x="45.105" y="0">ta</tspan><tspan class="cls-2" x="60.552" y="0">r</tspan><tspan x="67.221" y="0">t plan</tspan></text>
+  <line class="cls-1" x1="109" y1="211" x2="253.957" y2="173.191"/>
+  <polygon class="cls-1" points="85 41 85 138.021 89 143 85 150.957 85 173.191 89 178.532 85 189.085 85 211 98 222 109 213.596 108 203 112 198 112 182 109 173.191 112 162 112 143.128 109 137 112 126.106 112 41 85 41"/>
+  <line class="cls-1" x1="112" y1="94.787" x2="85" y2="131.5"/>
+  <line class="cls-1" x1="112" y1="111.468" x2="89" y2="143"/>
+  <line class="cls-1" x1="109" y1="137" x2="85" y2="169.681"/>
+  <line class="cls-1" x1="112" y1="143.128" x2="90.213" y2="176.953"/>
+  <line class="cls-1" x1="109" y1="173.191" x2="85" y2="202.702"/>
+  <line class="cls-1" x1="112" y1="182" x2="89" y2="214.385"/>
+  <line class="cls-1" x1="108" y1="203" x2="94.812" y2="219.302"/>
+  <path class="cls-1" d="m151,303s-2-16,25-8c11,9-17,18-25,8Z"/>
+  <line class="cls-1" x1="151" y1="303" x2="151" y2="353"/>
+  <line class="cls-1" x1="178.526" y1="300.074" x2="178.526" y2="351"/>
+</svg>
