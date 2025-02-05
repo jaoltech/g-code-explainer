@@ -18,7 +18,7 @@ const gcodeData ={
         "description": "Clockwise circular interpolation. Moves the tool along a circular path in a clockwise direction.",
         "code": "G02 X75 Y25 R50 F800",
         "example": "G17 G90 X25 Y75\nG02 X75 Y25 R50",
-        "illustration": "https://via.placeholder.com/300/3357FF/FFFFFF?text=G02"
+        "illustration": "G02.svg"
     },
     "G03": {
         "heading": "Counterclockwise circular interpolation",
