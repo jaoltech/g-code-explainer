@@ -69,10 +69,24 @@ const gcodeData ={
         "example": "G43 H5 D5 Z2.",
         "illustration": "https://via.placeholder.com/300/FFA533/FFFFFF?text=G43"
     },
+    "G47": {
+        "heading": "Engraving cycle",
+        "description": "Engraves text or sequential numbers and letters",
+        "code": "G90 G47 P1 X100. Y100. Z-1. (Engraves a 1 on first call, then 2, 3 etc.)",
+        "example": "",
+        "illustration": ""
+    },
+    "G54-G59": {
+        "heading": "Zero-point offset",
+        "description": "Shifts the current coordinate system by the amount in X and Y",
+        "code": "G90 G54 X200. Y200. (Absolute programming, machines moves to X200, Y200)",
+        "example": "",
+        "illustration": "G54.png"
+    },
     "G70": {
         "heading": "Bolt hole circle",
         "description": "Create a bolt hole circle with a set of holes in a diameter",
-        "code": "G70 X Y I J L",
+        "code": "G00 X0. Y0.\nG81 z-4.5 F80. L0.\nG70 X20. Y20. I40. J. L8\nG80",
         "example": "G00 X0. Y0.\nG81 z-4.5 F80. L0.\nG70 X20. Y20. I40. J. L8\nG80",
         "illustration": "G70.png"
     },
@@ -81,7 +95,7 @@ const gcodeData ={
         "description": "Simple drilling cycle. Drills a hole to a specified depth and returns to the starting position.",
         "code": "G81 X25. Y40. Z-20. R2. F250.",
         "example": "G99 G81 X25. Y40. Z-20. R2. F250.\nX50\nG80",
-        "illustration": "g81-animation.html"
+        "illustration": ["g81-animation.html", "G81.png"]
     },
     "G83": {
         "heading": "Peck drilling cycle",
