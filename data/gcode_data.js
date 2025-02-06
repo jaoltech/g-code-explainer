@@ -69,6 +69,13 @@ const gcodeData ={
         "example": "G43 H5 D5 Z2.",
         "illustration": "https://via.placeholder.com/300/FFA533/FFFFFF?text=G43"
     },
+    "G70": {
+        "heading": "Bolt hole circle",
+        "description": "Create a bolt hole circle with a set of holes in a diameter",
+        "code": "G70 X Y I J L",
+        "example": "G00 X0. Y0.\nG81 z-4.5 F80. L0.\nG70 X20. Y20. I40. J. L8\nG80",
+        "illustration": "G70.png"
+    }
     "G81": {
         "heading": "Simple drilling cycle",
         "description": "Simple drilling cycle. Drills a hole to a specified depth and returns to the starting position.",
