@@ -57,12 +57,15 @@
             background-color: white; /* Change to any background color */
             border-radius: 10px; /* Optional: add rounded corners */
         }
-        #gcode-illustration-container svg {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            margin: auto;
+        #gcode-illustration-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            width: 100%;
+            gap: 10px; /* Adds spacing between images */
         }
+
 
 
     </style>
@@ -103,7 +106,7 @@
             <!-- Illustration -->
             <div class="card col-span-1 text-center">
                 <h2 class="text-lg font-semibold text-teal-400 mb-3">Illustration</h2>
-                <div id="gcode-illustration-container" class="w-full flex justify-center items-center">
+                <div id="gcode-illustration-container" class="w-full flex flex-col justify-center items-center">
                     <img id="gcode-illustration" src="https://via.placeholder.com/300" class="rounded-lg shadow-md mx-auto" alt="G-Code Illustration">
                 </div>                
             </div>
