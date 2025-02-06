@@ -52,17 +52,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%; /* Adjust height based on your SVG */
+            max-width: 100%;
+            max-height: 300px; /* Adjust height based on your SVG */
             background-color: white; /* Change to any background color */
             border-radius: 10px; /* Optional: add rounded corners */
-        }
-        #gcode-illustration-container {
-            display: flex;
+            height: auto;
+            object-fit: contain;
             flex-direction: column; /* Stack items vertically */
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-            width: 100%;
             gap: 10px; /* Adds spacing between images */
         }
 
