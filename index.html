@@ -48,18 +48,19 @@
             from { opacity: 0.2; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        #gcode-illustration-container {
-            display: flex;
+        #gcode-illustration-container img,
+        #gcode-illustration-container svg {
+            display: block;
             justify-content: center;
             align-items: center;
-            max-width: 100%;
+            max-width: 400px;
             max-height: 300px; /* Adjust height based on your SVG */
             background-color: white; /* Change to any background color */
             border-radius: 10px; /* Optional: add rounded corners */
-            height: auto;
             object-fit: contain;
             flex-direction: column; /* Stack items vertically */
             gap: 10px; /* Adds spacing between images */
+            padding: 10px;
         }
 
 
